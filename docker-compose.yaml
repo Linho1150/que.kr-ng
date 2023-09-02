@@ -1,5 +1,18 @@
 version: '3'
 services:
+  vault:
+    image: vault
+    container_name: vault
+    ports:
+      - "8200:8200"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: "quekr_vault_token"
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - ./vault-data:/vault/data
+    restart: always
+
   redis:
     image: redis:latest
     ports:
